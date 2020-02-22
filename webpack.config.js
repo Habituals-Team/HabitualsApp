@@ -1,8 +1,7 @@
 const path = require("path");
 const HtmlWebPackPlugin = require("html-webpack-plugin");
 
-module.exports = env => {
-  return {
+module.exports = {
     entry: "./src/index.js",
     mode: "development",
     output: {
@@ -15,7 +14,7 @@ module.exports = env => {
           test: /\.(js|jsx)$/,
           exclude: /(node_modules|bower_components)/,
           loader: "babel-loader",
-          options: { presets: ["@babel/env"] }
+          options: { presets: ["@babel/env", "@babel/preset-react"] }
         },
         {
           test: /\.css$/,
@@ -34,14 +33,13 @@ module.exports = env => {
           target: "http://localhost:3000",
           secure: false
         },
-        contentBase: path.join(__dirname, "build")
+        contentBase: path.resolve(__dirname, "dist")
       }
     },
     plugins: [
       new HtmlWebPackPlugin({
-        template: path.join(__dirname, "./public/index.html"),
-        filename: "index.html"
+        template: path.resolve(__dirname, "public", "index.html"),
+        filename: "./index.html"
       })
     ]
   };
-};
