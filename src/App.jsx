@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import {hot} from "react-hot-loader";
 
 class App extends Component {
     constructor() {
@@ -9,7 +10,7 @@ class App extends Component {
     }
 
     render(){
-        return (<h1>hi</h1>);
+        return (<h1>TEAM JIGGLY|PUFFFSS</h1>);
     }
 }
 
@@ -19,4 +20,4 @@ class App extends Component {
 
 
 
-export default App;
+export default hot(module)(App);

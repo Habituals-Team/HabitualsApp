@@ -4,9 +4,9 @@
   "description": "Habitual Lifestyle App",
   "main": "index.js",
   "scripts": {
-    "start": "webpack-dev-server --mode development",
+    "start": "nodemon server/server.js",
+    "dev" : "concurrently \"webpack-dev-server --mode development\" \"nodemon server/server.js\"",
     "build": "webpack --mode development",
-    "server": "nodemon server/server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -45,6 +45,7 @@
     "react-big-calendar": "^0.24.0",
     "react-dom": "^16.12.0",
     "react-hook-form": "^4.9.8",
+    "react-hot-loader": "^4.12.19",
     "react-router-dom": "^5.1.2"
   },
   "nodemonConfig": {
