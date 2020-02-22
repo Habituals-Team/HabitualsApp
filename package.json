@@ -1,0 +1,56 @@
+{
+  "name": "habitual_app",
+  "version": "1.0.0",
+  "description": "Habitual Lifestyle App",
+  "main": "index.js",
+  "scripts": {
+    "start": "webpack-dev-server --mode development",
+    "build": "webpack --mode development",
+    "server": "nodemon server/server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Habituals-Team/Habituals-App.git"
+  },
+  "author": "Jiggly Puff",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Habituals-Team/Habituals-App/issues"
+  },
+  "homepage": "https://github.com/Habituals-Team/Habituals-App#readme",
+  "devDependencies": {
+    "@babel/cli": "^7.1.0",
+    "@babel/core": "^7.1.0",
+    "@babel/preset-env": "^7.1.0",
+    "@babel/preset-react": "^7.0.0",
+    "babel-loader": "^8.0.2",
+    "cross-env": "^7.0.0",
+    "css-loader": "^1.0.0",
+    "html-loader": "^0.5.5",
+    "html-webpack-plugin": "^3.2.0",
+    "node-sass": "^4.13.1",
+    "sass-loader": "^8.0.2",
+    "style-loader": "^0.23.0",
+    "webpack": "^4.41.6",
+    "webpack-cli": "^3.1.1",
+    "webpack-dev-server": "^3.1.8"
+  },
+  "dependencies": {
+    "express": "^4.17.1",
+    "nodemon": "^2.0.2",
+    "pg": "^7.18.2",
+    "psql": "0.0.1",
+    "react": "^16.12.0",
+    "react-big-calendar": "^0.24.0",
+    "react-dom": "^16.12.0",
+    "react-hook-form": "^4.9.8",
+    "react-router-dom": "^5.1.2"
+  },
+  "nodemonConfig": {
+    "ignore": [
+      "build",
+      "client"
+    ]
+  }
+}
