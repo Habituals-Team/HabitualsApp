@@ -3,6 +3,7 @@ import HabitBoxesComponent from './HabitBoxesComponent.jsx';
 
 /*
 This creates the container where all the habit boxes live.
+will render # of habitBoxes pending on how many habits are returned from the fetch '/habits'
 */
 
 const BoxesContainer = () => {
@@ -11,23 +12,25 @@ const BoxesContainer = () => {
     //fetch goes here
     //habitsData will have all the habits info from db;
     useEffect(() => {
-        fetch('/')
+        fetch('/habits', {
+            method: 'GET'
+        })
             .then(res => res.json())
             .then((habitsData) => {
                 //console.log(habitsData);
-                const items = [habitsData];
+                const items = habitsData;
                 setHabits(items);
             });
     }, [])
-    //console.log(habitsArray);
+    // console.log(habitsArray);
 
-    const boxes = habitsArray.map((habit, i) => {
+    const boxes = habitsArray.map((habit) => {
 
-        return (<HabitBoxesComponent key={i} habitName={habit.name} habitInfo={habit.info} />)
+        return (<HabitBoxesComponent key={habit._id} habitName={habit.name} habitInfo={habit.info} />)
     });
 
     return (
-        <div>
+        <div className="boxContainer">
             {boxes}
         </div>
     );
