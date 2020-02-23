@@ -1,11 +1,13 @@
 import React, { Component } from 'react';
 
-//need a parameter to pass down props from BoxesContainer 'params'
-
-const HabitBoxesComponent = (params) => {
+//need a parameter to pass down props from BoxesContainer 'props' ex) {props.habitName}
+//need button on click to go to user input form passing in habit._id;
+const HabitBoxesComponent = (props) => {
     return (<div>
-        <p>Habit Name:{params.habitName} </p>
-        <p>Habit Info: {params.habitInfo}</p>
+        <p>Habit Name: {props.habitName} </p>
+        <p>
+
+        </p>
 
     </div>)
 }

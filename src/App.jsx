@@ -19,10 +19,6 @@ class App extends Component {
     }
 }
 
-// const App = () => {
-//     return (<h1>hi</h1>);
-// }
-
 
 
 export default hot(module)(App);
