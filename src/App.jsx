@@ -31,7 +31,7 @@ class App extends Component {
           <Button
             className="buttonsRouter"
             component={Link}
-            to="/info"
+            to="/i nfo"
           ></Button>
           <Route exact strict path="/info" component={InfoForm} />
           <div>--------------------- </div>
