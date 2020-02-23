@@ -1,4 +1,4 @@
-import React from "react";
+	import React from "react";
 
 const Calendar = () => {
   // This is where you use forloops to make boxes
@@ -6,11 +6,11 @@ const Calendar = () => {
   // make boxes to appear on page when linking
   let boxesArray = [];
   for (let i = 0; i < 6; i++) {
-    boxesArray.push(<div className="calendar">Calendar {i}</div>);
+    boxesArray.push(<div className="boxes">THIS IS BOXES {i}</div>);
   }
   return (
     <div>
-      <h1>This is coming from Calendar</h1>
+      <h1>This is coming from Boxes</h1>
       {boxesArray}
     </div>
   );

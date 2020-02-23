@@ -6,11 +6,11 @@ const InputForm = () => {
   // make boxes to appear on page when linking
   let boxesArray = [];
   for (let i = 0; i < 6; i++) {
-    boxesArray.push(<div className="calendar">InputForm {i}</div>);
+    boxesArray.push(<div className="boxes">THIS IS BOXES {i}</div>);
   }
   return (
     <div>
-      <h1>This is coming from InputForm</h1>
+      <h1>This is coming from Boxes</h1>
       {boxesArray}
     </div>
   );

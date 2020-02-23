@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { hot } from "react-hot-loader";
+import BoxesContainer from "./BoxesContainer.jsx";
 
 // style importing - Eliot test
 import "../public/style.css";
@@ -8,8 +9,7 @@ import "../public/style.css";
 import Button from "@material-ui/core/Button";
 
 // my test components
-import Boxes from "./testComponent - BoxesContainer";
-import InputForm from "./testComponent - Input Form";
+import InputForm from "./testComponent - InputForm";
 import InfoForm from "./testComponent - InfoPage";
 import Calendar from "./testComponent - Calendar";
 
@@ -26,14 +26,14 @@ class App extends Component {
           <h1>APP</h1>
           {/* <Link to="/">Boxes</Link> */}
           <Button className="buttonsRouter" component={Link} to="/"></Button>
-          <Route exact strict path="/" component={Boxes} />
+          <Route exact strict path="/" component={BoxesContainer} />
           <div>--------------------- </div>
           <Button
             className="buttonsRouter"
             component={Link}
-            to="/i nfo"
+            to="/asdf"
           ></Button>
-          <Route exact strict path="/info" component={InfoForm} />
+          <Route exact strict path="/asdf" component={InfoForm} />
           <div>--------------------- </div>
           <Button
             className="buttonsRouter"
