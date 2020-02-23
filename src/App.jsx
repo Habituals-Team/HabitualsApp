@@ -10,7 +10,7 @@ class App extends Component {
     }
 
     render(){
-        return (<h1>TEAM JIGGLY|PUFFFSS</h1>);
+        return (<h1>TEAM JIGGLY|PUFFFSSSSSS</h1>);
     }
 }
 
