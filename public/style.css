@@ -1,0 +1,24 @@
+/* Eliot's style css */
+
+.boxes {
+  border: 1px solid red;
+  background-color: green;
+}
+
+.calendar {
+  border: 2px solid rgb(0, 255, 76);
+  background-color: green;
+}
+.infoForm {
+  border: 2px solid blue;
+  background-color: green;
+}
+.inputForm {
+  border: 2px solid purple;
+  background-color: green;
+}
+
+.buttonsRouter {
+  border: 2px solid black;
+  background-color: red;
+}
