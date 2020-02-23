@@ -4,7 +4,7 @@ const path = require("path");
 
 // const hi = require ("./../client/public/index.html")
 
-app.get("/", (req, res) => {
+app.get("/*", (req, res) => {
   res.sendFile(path.join(__dirname, "../public/index.html"));
 });
 
