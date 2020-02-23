@@ -1,5 +1,6 @@
-import React, {Component} from 'react';
-import {hot} from "react-hot-loader";
+import React, { Component } from 'react';
+import { hot } from "react-hot-loader";
+import BoxesContainer from './BoxesContainer';
 
 class App extends Component {
     constructor() {
@@ -9,8 +10,12 @@ class App extends Component {
         }
     }
 
-    render(){
-        return (<h1>TEAM JIGGLY|PUFFFSS</h1>);
+    render() {
+        return (<div>
+            <h1>TEAM JIGGLY|PUFFFSS</h1>
+            <BoxesContainer />
+        </div>);
+
     }
 }
 
