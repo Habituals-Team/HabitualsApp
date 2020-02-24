@@ -78,7 +78,7 @@ userControllers.getUser = (req, res, next) => {
 
 //controller to post new user info to db
 userControllers.postUser = (req, res, next) => {
-  db.query(`INSERT INTO users (username, password, first_name, last_name) VALUES (${oauthObj.username}, ${oauthObj.firstName}, ${oauthObj.lastName})`,
+  db.query(`INSERT INTO users (username, password, first_name, last_name) VALUES ('${oauthObj.username}', '${oauthObj.firstName}', '${oauthObj.lastName}')`,
     (err, results) => {
       if(err) return next(err);
       res.locals.userInfo = results;
@@ -90,10 +90,11 @@ userControllers.postUser = (req, res, next) => {
 
 //controller to post new routine
 userControllers.updateRoutine = (req, res, next) => {
-  db.query(`INSERT INTO routine (users_id, repeat_every, repeat_frequency) VALUES (${req.body.usersId}, ${req.body.repeatEvery}, ${req.body.repeatFrequency})`, 
+  db.query(`INSERT INTO routine (users_id, repeat_every, repeat_frequency) VALUES (${req.body.usersId}, ${req.body.repeatEvery}, '${req.body.repeatFrequency}')`, 
     (err, results) => {
       if(err) return next(err);
       console.log('successful post!');
+      res.locals.routine = results.rows;
       next();
     }
   )
@@ -101,8 +102,9 @@ userControllers.updateRoutine = (req, res, next) => {
 
 // controller to post a user's form info to db
 userControllers.updateUserHabits = (req, res, next) => {
+  console.log('this is req.body', req.body);
   db.query(`INSERT INTO user_habits (users_id, habits_id, memo, routine_id, start_date, end_date, created_date) 
-            VALUES (${req.body.usersId}, ${req.body.habitsId}, ${req.body.memo}, ${req.body.routineId}, ${req.body.startDate}, ${req.body.endDate}, NOW())`,
+            VALUES (${req.body.usersId}, ${req.body.habitsId}, '${req.body.memo}', ${req.body.routineId}, '${req.body.startDate}', '${req.body.endDate}', NOW())`,
     (err, results) => {
       // results return an empty array?
       if (err) return next(err);
