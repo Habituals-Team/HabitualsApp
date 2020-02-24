@@ -17,7 +17,7 @@ router.get('/habits', habitControllers.getHabits, (req, res) => {
 });
 
 // handler to post user input into DB
-router.post('/user-input', userControllers.updateUserHabits, (req, res) => {
+router.post('/user-input', userControllers.updateRoutine, userControllers.updateUserHabits, (req, res) => {
   res.status(200).json(req.body);
 });
 
@@ -27,7 +27,9 @@ router.get('/', habitControllers.getInfo, (req, res) => {
 });
 
 // handler to get get user info on login
-router.get('/', userControllers.getUser)
+router.get('/', userControllers.getUser, userControllers.postUser, (req, res) => {
+  res.status(200).json(res.locals.userInfo);
+})
 
 //handler to post user info on new login
 
