@@ -9,7 +9,7 @@ userControllers.updateUserHabits = (req, res, next) => {
       if (err) return next(err);
       req.body.newUserHabit = results.rows;
       next();
-    })
-}
+    });
+};
 
 module.exports = userControllers;

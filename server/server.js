@@ -2,12 +2,17 @@ const express = require("express");
 const app = express();
 const path = require("path");
 const bodyParser = require('body-parser');
+const client_secret = require('../client_secret/client_secret');
 // const router = require('./routes/api');
-const habitControllers = require('./controllers/habitControllers');
-const userControllers = require('./controllers/userControllers');
+const cookieParser = require('cookie-parser');
+
+const client_id = "371087135-djckvfenrkntg92agsc5c7csq2d3cej1.apps.googleusercontent.com";
+
 const api = require('./routes/api');
 
 app.use(bodyParser());
+
+// app.get("/login")
 
 // route to redner html on home page
 app.get("/", (req, res) => {
@@ -25,7 +30,7 @@ app.use('/habits', api);
 app.post('/user-input', api);
 
 // route to get habit information to render when a habit option is clicked
-app.get('/habit-info', api)
+app.get('/habit-info', api);
 
 
 
