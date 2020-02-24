@@ -70,7 +70,7 @@ const BoxesContainer = () => {
         <Button
           component={Link} to={`/habit/${habit._id}`} variant="contained">{habit.name}
         </Button>
-      </div >
+      </div>
     );
   });
 
