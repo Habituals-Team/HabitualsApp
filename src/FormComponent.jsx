@@ -1,6 +1,8 @@
 import React from "react";
+import Button from "@material-ui/core/Button";
 // import App from "./App.jsx";
-
+import { ButtonGroup, makeStyles, ButtonBase, Typography } from "@material-ui/core";
+import { Link } from "react-router-dom";
 /*
 No new node modules installed for this component.
 Component renders a skeleton of form component.
@@ -21,7 +23,7 @@ const Form = (props) => {
         placeholder="Habit Encouragement Memo"
       />
       <br></br>
-      <label for="frequency">Frequency: </label>
+      <label htmlFor="frequency">Frequency: </label>
       <select id="frequency" name="frequency">
         <option value="1">1</option>
         <option value="2">2</option>
@@ -34,13 +36,13 @@ const Form = (props) => {
         <option value="9">9</option>
         <option value="10">10</option>
       </select>
-      <label for="frequency">:Per Hour</label>
+      <label htmlFor="frequency">:Per Hour</label>
       <br></br>
-      <label for="startDate"> Start Date:</label>
+      <label htmlFor="startDate"> Start Date:</label>
       <input type="date" id="startDate" />
-      <label for="endDate"> End Date:</label>
+      <label htmlFor="endDate"> End Date:</label>
       <input type="date" id="endDate" />
-      <input type="submit" value="Generate Calendar" />
+      <Button component={Link} to={`/habit/${id}/input/cal`} varient="contained">Generate Calendar</Button>
     </form>
   );
 };

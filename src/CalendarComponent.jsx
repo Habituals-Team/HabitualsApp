@@ -13,7 +13,7 @@
 // ------
 // */
 
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Calendar, momentLocalizer } from "react-big-calendar";
 import moment from "moment";
 import "react-big-calendar/lib/css/react-big-calendar.css";
@@ -22,10 +22,31 @@ moment.locale("en-GB");
 const localizer = momentLocalizer(moment);
 // const myEventsList = {} //empty object for now
 
-const HabitCalendar = () => {
+const HabitCalendar = (props) => {
+
+  const {
+    match: {
+      params: { id }
+    }
+  } = props;
+  const [habitName, setHabitName] = useState("");
+  useEffect(() => {
+    fetch(`/habit-info?id=${id}`, {
+      method: "GET"
+    })
+      .then(res => res.json())
+      .then(habitsData => {
+        //console.log(habitsData);
+        const items = habitsData;
+        // items = [{name:, info:, image:}]
+        setHabitName(items[0].name);
+      });
+  }, []);
+
 
   return (
     <div>
+      <h1>{habitName} Habit Calendar</h1>
       <Calendar
         localizer={localizer}
         events={[{
