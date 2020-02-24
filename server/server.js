@@ -22,10 +22,10 @@ app.get("/dist/bundle.js", (req, res) => {
 app.use('/habits', api);
 
 // route to post user input from form to db
-app.post('/user-input', api);
+app.use('/user-input', api);
 
 // route to get habit information to render when a habit option is clicked
-app.get('/habit-info', api)
+app.use('/habit-info', api)
 
 
 
