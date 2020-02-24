@@ -15,7 +15,7 @@ router.post('/', userControllers.updateUserHabits, (req, res) => {
 });
 
 //route to get info for info display
-router.post('/', habitControllers.getInfo, (req, res) => {
+router.get('/', habitControllers.getInfo, (req, res) => {
   res.status(200).json(res.locals.habitInfo);
 });
 
