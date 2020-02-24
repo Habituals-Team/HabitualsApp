@@ -12,3 +12,5 @@ yarn-error.log*
 *.zip
 # jest coverage
 /coverage
+#c google oauth client secret
+/client_secret
