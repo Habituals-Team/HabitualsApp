@@ -11,6 +11,10 @@ router.get('/loginUrl', userControllers.getLoginUrl, (req, res) => {
   res.status(200).json(res.locals.loginUrl)
 });
 
+router.get('/', userControllers.getGoogleId, (req,res) => {
+  res.status(200).send('hi')
+})
+
 // route to get habits for home page
 router.get('/habits', habitControllers.getHabits, (req, res) => {
   res.status(200).json(res.locals.habits);

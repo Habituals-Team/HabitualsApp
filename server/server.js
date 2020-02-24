@@ -3,12 +3,7 @@ const app = express();
 const path = require("path");
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
-
-// client secret
-const client_secret = require('../client_secret/client_secret');
-// client id from google oath
-const client_id = "371087135-djckvfenrkntg92agsc5c7csq2d3cej1.apps.googleusercontent.com";
-
+const quesry
 
 // require routes
 const api = require('./routes/api');
@@ -21,7 +16,7 @@ app.use(cookieParser());
 // route to render html on home page, while providing the front-end the url for the login page
 app.get("/", (req, res) => {
   res.sendFile(path.join(__dirname, "../public/index.html"));
-});  
+});
 
 // route to api's to handle users/habits requests
 app.use('/', api);

@@ -1,5 +1,7 @@
 const db = require('../models/models.js');
 const { google } = require('googleapis')
+
+
 const client_secret = require('../../client_secret/client_secret')
 
 const userControllers = {};
@@ -52,8 +54,12 @@ userControllers.getLoginUrl = (req, res, next) => {
   next();
 }
 
-/// OATH ENDS HERE
 
+
+userControllers.getGoogleId = (req, res, next) => {
+  next();
+}
+/// OATH ENDS HERE
 
 
 
