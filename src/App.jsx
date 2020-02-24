@@ -37,6 +37,17 @@ chosen from the home page.
   }
 
   render() {
+
+    /// injecting URL from google's api for Login button at initial render
+        fetch("/loginUrl", {
+          method: "GET"
+        })
+          .then(res => res.json())
+          .then(loginUrl => {
+            console.log(loginUrl);
+          });
+
+          
     return (
       <Switch>
         <div>

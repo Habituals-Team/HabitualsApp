@@ -4,6 +4,13 @@ const router = express.Router();
 const habitControllers = require('../controllers/habitControllers');
 const userControllers = require('../controllers/userControllers');
 
+
+// route to getloginUrl (oath) at page start
+router.get('/loginUrl', userControllers.getLoginUrl, (req, res) => {
+  console.log('attempting to get login url')
+  res.status(200).json(res.locals.loginUrl)
+});
+
 // route to get habits for home page
 router.get('/habits', habitControllers.getHabits, (req, res) => {
   res.status(200).json(res.locals.habits);
