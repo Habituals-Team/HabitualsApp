@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 
 const habitControllers = require('../controllers/habitControllers');
-const userControllers = require('../controllers.userControllers');
+const userControllers = require('../controllers/userControllers');
 
 // route to get habits for home page
 router.get('/', habitControllers.getHabits, (req, res) => {
