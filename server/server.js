@@ -16,12 +16,15 @@ const api = require('./routes/api');
 // handle parsing request body
 app.use(express.json());
 
+<<<<<<< HEAD
+=======
 // route to render html on home page
 app.get("/", (req, res) => {
   res.sendFile(path.join(__dirname, "../public/index.html"));
 });
 
 // route to handle webpack
+>>>>>>> 0a3ee143ec3c92594d768228a6283eba20e8a525
 app.get("/dist/bundle.js", (req, res) => {
   res.status(200).sendFile(path.join(__dirname, "../dist/bundle.js"));
 });
@@ -46,5 +49,10 @@ app.use((err, req, res, next) => {
   res.status(errObj.status).json(errObj.message);
 });
 
+// route to render html on home page
+app.get("/*", (req, res) => {
+  res.sendFile(path.join(__dirname, "../public/index.html"));
+});
+//NOTE: used "/*" so if refreshed, will go to homepage plus changed to bottom so it can reach specific endpoints
 
 app.listen(3000);
