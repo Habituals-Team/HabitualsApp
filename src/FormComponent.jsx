@@ -1,6 +1,8 @@
 import React from "react";
+import Button from "@material-ui/core/Button";
 // import App from "./App.jsx";
-
+import { ButtonGroup, makeStyles, ButtonBase, Typography } from "@material-ui/core";
+import { Link } from "react-router-dom";
 /*
 No new node modules installed for this component.
 Component renders a skeleton of form component.
@@ -8,7 +10,10 @@ Payload from this form should posted to psql database.
 Upon click of "Generate Calendar" react calendar should render.
 */
 
-const Form = () => {
+const Form = (props) => {
+  //NOTE: added 'props' and const below to be able to pull the habit_id info from HabitBoxesComponent
+  const { match: { params: { id } } } = props;
+
   return (
     <form id="inputForm">
       <label for="habitMemo">Habit Memo:</label>
@@ -18,7 +23,7 @@ const Form = () => {
         placeholder="Habit Encouragement Memo"
       />
       <br></br>
-      <label for="frequency">Frequency: </label>
+      <label htmlFor="frequency">Frequency: </label>
       <select id="frequency" name="frequency">
         <option value="1">1</option>
         <option value="2">2</option>
@@ -31,13 +36,13 @@ const Form = () => {
         <option value="9">9</option>
         <option value="10">10</option>
       </select>
-      <label for="frequency">:Per Hour</label>
+      <label htmlFor="frequency">:Per Hour</label>
       <br></br>
-      <label for="startDate"> Start Date:</label>
+      <label htmlFor="startDate"> Start Date:</label>
       <input type="date" id="startDate" />
-      <label for="endDate"> End Date:</label>
+      <label htmlFor="endDate"> End Date:</label>
       <input type="date" id="endDate" />
-      <input type="submit" value="Generate Calendar" />
+      <Button component={Link} to={`/habit/${id}/input/cal`} varient="contained">Generate Calendar</Button>
     </form>
   );
 };
