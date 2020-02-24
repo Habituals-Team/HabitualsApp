@@ -11,6 +11,14 @@ habitControllers.getHabits = (req, res, next) => {
   })
 };
 
+// middlewear to get images from images table
+habitControllers.getImages = (req, res, next) => {
+  db.query('SELECT * FROM images', (err, results) => {
+    if (err) return next(err);
+    res.locals.images = results.rows;
+  })
+}
+
 //middlewear to get info from habits table
 habitControllers.getInfo = (req, res, next) => {
   const { id } = req.query; //NOTE: added const to make sure it was pulling the id path in the get request
