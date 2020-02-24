@@ -7,6 +7,7 @@ const HabitBoxesComponent = (props) => {
     return (<div>
         <p>{props.habitName}</p>
         <p>{props.habitInfo}</p>
+        <button>placeholder for button to form component</button>
     </div>)
 }
 
