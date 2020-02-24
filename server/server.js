@@ -3,7 +3,7 @@ const app = express();
 const path = require("path");
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
-const quesry
+const queryString = require('query-string');
 
 // require routes
 const api = require('./routes/api');
@@ -15,6 +15,7 @@ app.use(cookieParser());
 
 // route to render html on home page, while providing the front-end the url for the login page
 app.get("/", (req, res) => {
+  console.log(req.query)
   res.sendFile(path.join(__dirname, "../public/index.html"));
 });
 

@@ -46,6 +46,7 @@
     "nodemon": "^2.0.2",
     "pg": "^7.18.2",
     "psql": "0.0.1",
+    "query-string": "^6.11.0",
     "react": "^16.12.0",
     "react-big-calendar": "^0.24.0",
     "react-dom": "^16.12.0",
