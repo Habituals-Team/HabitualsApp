@@ -25,7 +25,7 @@ app.use('/habits', api);
 app.post('/user-input', api);
 
 // route to get habit information to render when a habit option is clicked
-app.get('/habit-info', api)
+app.get('/habit-info', api);
 
 
 
