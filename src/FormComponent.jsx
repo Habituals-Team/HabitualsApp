@@ -1,13 +1,42 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import { useForm } from 'react-hook-form';
+import "regenerator-runtime/runtime";
 
-export default function App() {
+// useEffect(() => {
+//   fetch("/habits", {
+//     method: "GET"
+//   })
+//     .then(res => res.json())
+//     .then(habitsData => {
+//       //console.log(habitsData);
+//       const items = habitsData;
+//       setHabits(items);
+//     });
+// }, []);
+
+
+export default function UserForm() {
   const { register, handleSubmit, errors } = useForm();
-  const onSubmit = data => console.log(data);
-  console.log(errors);
-  
+  const handleOnSubmit = data => {
+      console.log(data, "This is data coming from the form");
+      fetch('/user-input', {
+        method: 'POST', // or 'PUT'
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data),
+      })
+      .then((response) => response.json())
+      .then((newData) => {
+        console.log('Success:', newData);
+      })
+      .catch((error) => {
+        console.error('Error:', error);
+      });
+    }
+
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
+    <form onSubmit={handleSubmit(handleOnSubmit)}>
     <div>
       <input type="number" placeholder="Habit Nickname" name="usersId" ref={register} />
     </div>
@@ -18,7 +47,7 @@ export default function App() {
       <input type="text" placeholder="Notes" name="memo" ref={register} />
     </div>
     <div></div>
-      <select name="routineId" ref={register({ required: true })}>
+      <select name="routineId" ref={register}>
         <option value="1">1</option>
         <option value=" 2"> 2</option>
         <option value=" 3"> 3</option>
@@ -31,9 +60,8 @@ export default function App() {
         <option value=" 10"> 10</option>
       </select>
       <input type="text" placeholder="How Often?" name="repetition" ref={register} />
-      <input type="date" placeholder="startDate" name="startDate" ref={register({required: true, maxLength: 11, pattern: /^\S+@\S+$/i})} />
-      <input type="date" placeholder="endDate" name="endDate" ref={register({required: true, maxLength: 12, pattern: /^\S+@\S+$/i})} />
-
+      <input type="dateTime" placeholder="startDate" name="startDate" ref={register} />
+      <input type="dateTime" placeholder="endDate" name="endDate" ref={register}/>
       <input type="submit" />
     </form>
   );
