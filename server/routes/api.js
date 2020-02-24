@@ -15,9 +15,11 @@ router.post('/', userControllers.updateUserHabits, (req, res) => {
 });
 
 //route to get info for info display
-router.post('/', habitControllers.getInfo, (req, res) => {
+router.get('/habit-info', habitControllers.getInfo, (req, res) => {
   res.status(200).json(res.locals.habitInfo);
 });
 
+
+//NOTE: changed route from '/' to '/habit-info' in router post (now router.get)
 
 module.exports = router;
