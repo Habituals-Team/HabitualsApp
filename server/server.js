@@ -15,6 +15,7 @@ const api = require('./routes/api');
 
 // handle parsing request body
 app.use(express.json());
+app.use(cookieParser());
 
 
 // route to render html on home page, while providing the front-end the url for the login page

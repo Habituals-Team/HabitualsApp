@@ -4,8 +4,9 @@ const client_secret = require('../../client_secret/client_secret')
 
 const userControllers = {};
 
-// controller to generate login url
 
+// OATH STARTS HERE
+// controller to generate login url
 userControllers.getLoginUrl = (req, res, next) => {
   // initialize a config object
   const googleConfig = {
@@ -50,6 +51,11 @@ userControllers.getLoginUrl = (req, res, next) => {
   res.locals.loginUrl = urlGoogle();
   next();
 }
+
+/// OATH ENDS HERE
+
+
+
 
 // controller to post a user's form info to db
 userControllers.updateUserHabits = (req, res, next) => {

@@ -47,7 +47,7 @@ chosen from the home page.
             console.log(loginUrl);
           });
 
-
+          
     return (
       <Switch>
         <div>
