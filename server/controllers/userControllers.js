@@ -63,10 +63,10 @@ userControllers.getGoogleId = (req, res, next) => {
 
 // controller to get user info from db
 userControllers.getUser = (req, res, next) => {
-  db.query(`SELECT username FROM users WHERE username = ${req.body.id}`,  // MUST CHANGE ID PASSED INTO QUERY BASED ON GOOGLE OAUTH
+  db.query(`SELECT username FROM users WHERE username = ${oauthObj.id}`,  // MUST CHANGE ID PASSED INTO QUERY BASED ON GOOGLE OAUTH
     (err, results) => {
       if (err) return next(err);
-      if (results === undefined) {
+      if (results === undefined) { // if not in db, go to post user
         console.log('user does not exist, make new user');
         return next();
       }
@@ -76,6 +76,28 @@ userControllers.getUser = (req, res, next) => {
     })
 }
 
+//controller to post new user info to db
+userControllers.postUser = (req, res, next) => {
+  db.query(`INSERT INTO users (username, password, first_name, last_name) VALUES (${oauthObj.username}, ${oauthObj.firstName}, ${oauthObj.lastName})`,
+    (err, results) => {
+      if(err) return next(err);
+      res.locals.userInfo = results;
+      console.log('new user created!');
+      next();
+    }
+  )
+}
+
+//controller to post new routine
+userControllers.updateRoutine = (req, res, next) => {
+  db.query(`INSERT INTO routine (users_id, repeat_every, repeat_frequency) VALUES (${req.body.usersId}, ${req.body.repeatEvery}, ${req.body.repeatFrequency})`, 
+    (err, results) => {
+      if(err) return next(err);
+      console.log('successful post!');
+      next();
+    }
+  )
+}
 
 // controller to post a user's form info to db
 userControllers.updateUserHabits = (req, res, next) => {
