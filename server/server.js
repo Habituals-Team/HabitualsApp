@@ -16,7 +16,7 @@ const api = require('./routes/api');
 // handle parsing request body
 app.use(express.json());
 
-// route to render html on home page
+//route to render html on home page
 app.get("/", (req, res) => {
   res.sendFile(path.join(__dirname, "../public/index.html"));
 });
@@ -46,10 +46,11 @@ app.use((err, req, res, next) => {
   res.status(errObj.status).json(errObj.message);
 });
 
-// route to render html on home page
-app.get("/*", (req, res) => {
+//route to render html on home page
+app.get("/", (req, res) => {
   res.sendFile(path.join(__dirname, "../public/index.html"));
 });
+
 //NOTE: used "/*" so if refreshed, will go to homepage plus changed to bottom so it can reach specific endpoints
 
 app.listen(3000);

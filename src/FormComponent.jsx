@@ -8,7 +8,10 @@ Payload from this form should posted to psql database.
 Upon click of "Generate Calendar" react calendar should render.
 */
 
-const Form = () => {
+const Form = (props) => {
+  //NOTE: added 'props' and const below to be able to pull the habit_id info from HabitBoxesComponent
+  const { match: { params: { id } } } = props;
+
   return (
     <form id="inputForm">
       <label for="habitMemo">Habit Memo:</label>
