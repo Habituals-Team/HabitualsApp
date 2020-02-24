@@ -34,6 +34,7 @@ app.use("/", (req, res, next) => {
   res.sendStatus(404);
 });
 
+
 // error handler
 app.use((err, req, res, next) => {
   consoe.log(err)
@@ -50,7 +51,6 @@ app.use((err, req, res, next) => {
 app.get("/", (req, res) => {
   res.sendFile(path.join(__dirname, "../public/index.html"));
 });
-
 //NOTE: used "/*" so if refreshed, will go to homepage plus changed to bottom so it can reach specific endpoints
 
 app.listen(3000);
