@@ -18,7 +18,7 @@ router.get('/habits', habitControllers.getHabits, (req, res) => {
 
 // handler to post user input into DB
 router.post('/user-input', userControllers.updateRoutine, userControllers.updateUserHabits, (req, res) => {
-  res.status(200).json(req.body);
+  res.status(200).json(res.locals.routine);
 });
 
 // handler to get info for info display
