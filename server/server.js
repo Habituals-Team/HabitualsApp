@@ -5,6 +5,7 @@ const bodyParser = require('body-parser');
 // const router = require('./routes/api');
 const habitControllers = require('./controllers/habitControllers');
 const userControllers = require('./controllers/userControllers');
+const api = require('./routes/api');
 
 app.use(bodyParser());
 
@@ -18,21 +19,14 @@ app.get("/dist/bundle.js", (req, res) => {
 });
 
 // route to render habit options on home page
-app.get('/habits', habitControllers.getHabits, (req, res) => {
-  res.status(200).json(res.locals.habits);
-});
+app.use('/habits', api);
 
 // route to post user input from form to db
-app.post('/user-input', userControllers.updateUserHabits, (req, res) => {
-  res.status(200)
-})
+app.post('/user-input', api);
 
 // route to get habit information to render when a habit option is clicked
-app.get('/habit-info', habitControllers.getInfo, (req, res) => {
-  res.status(200).json(res.locals.habitInfo);
-})
+app.get('/habit-info', api)
 
-// route to get a user's chosen habit and routine to render on calendar
 
 
 app.listen(3000);
