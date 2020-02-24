@@ -19,13 +19,13 @@ app.get("/", (req, res) => {
   res.sendFile(path.join(__dirname, "../public/index.html"));
 });
 
-// route to api's to handle users/habits requests
+// route to render html on home page
 app.use('/', api);
 
 // route to handle webpack
 app.get("/dist/bundle.js", (req, res) => {
   res.status(200).sendFile(path.join(__dirname, "../dist/bundle.js"));
-});  
+});
 
 // catch-all route handler for any requests to an unknown route
 app.use("/", (req, res, next) => {
@@ -43,6 +43,5 @@ app.use((err, req, res, next) => {
   const errObj = Object.assign(defaultErr, err);
   res.status(errObj.status).json(errObj.message);
 });
-
 
 app.listen(3000);

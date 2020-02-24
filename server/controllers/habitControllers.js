@@ -13,9 +13,10 @@ habitControllers.getHabits = (req, res, next) => {
 
 //middlewear to get info from habits table
 habitControllers.getInfo = (req, res, next) => {
-  db.query(`SELECT info FROM habits WHERE _id = ${id}`,
+  const { id } = req.query;
+  db.query(`SELECT * FROM habits WHERE _id = ${id}`,
     (err, results) => {
-      if(err) return next(err);
+      if (err) return next(err);
       res.locals.habitInfo = results.rows;
       next();
     })
