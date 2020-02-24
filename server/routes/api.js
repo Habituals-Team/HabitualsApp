@@ -5,17 +5,17 @@ const habitControllers = require('../controllers/habitControllers');
 const userControllers = require('../controllers/userControllers');
 
 // route to get habits for home page
-router.get('/', habitControllers.getHabits, (req, res) => {
+router.get('/habits', habitControllers.getHabits, (req, res) => {
   res.status(200).json(res.locals.habits);
 });
 
-//route to post user input from form
-router.post('/', userControllers.updateUserHabits, (req, res) => {
-  res.status(200)
+//route to post user input into DB
+router.post('/user-input', userControllers.updateUserHabits, (req, res) => {
+  res.status(200).send('routine added!')
 });
 
-//route to get info for info display
-router.post('/', habitControllers.getInfo, (req, res) => {
+//route to get info for info display when habit icon is clicked
+router.post('/habit-info', habitControllers.getInfo, (req, res) => {
   res.status(200).json(res.locals.habitInfo);
 });
 
