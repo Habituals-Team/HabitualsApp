@@ -47,7 +47,7 @@ export default function UserForm() {
       <input type="text" placeholder="Notes" name="memo" ref={register} />
     </div>
     <div></div>
-      <select name="routineId" ref={register}>
+      <select name="repeatEvery" ref={register}>
         <option value="1">1</option>
         <option value=" 2"> 2</option>
         <option value=" 3"> 3</option>
@@ -59,7 +59,7 @@ export default function UserForm() {
         <option value=" 9"> 9</option>
         <option value=" 10"> 10</option>
       </select>
-      <input type="text" placeholder="How Often?" name="repetition" ref={register} />
+      <input type="text" placeholder="How Often?" name="repeatFrequency" ref={register} />
       <input type="dateTime" placeholder="startDate" name="startDate" ref={register} />
       <input type="dateTime" placeholder="endDate" name="endDate" ref={register}/>
       <input type="submit" />
