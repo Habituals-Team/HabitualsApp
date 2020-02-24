@@ -3,8 +3,7 @@ const app = express();
 const path = require("path");
 const bodyParser = require('body-parser');
 // const router = require('./routes/api');
-const habitControllers = require('./controllers/habitControllers');
-const userControllers = require('./controllers/userControllers');
+
 const api = require('./routes/api');
 
 app.use(bodyParser());
