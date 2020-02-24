@@ -11,7 +11,7 @@ router.get('/habits', habitControllers.getHabits, (req, res) => {
 
 //route to post user input into DB
 router.post('/user-input', userControllers.updateUserHabits, (req, res) => {
-  res.status(200).send('routine added!')
+  res.status(200).json(req.body);
 });
 
 //route to get info for info display when habit icon is clicked
