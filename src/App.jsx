@@ -1,9 +1,10 @@
-import React, { Component } from "react";
+import React, { Component, useEffect } from "react";
 import { hot } from "react-hot-loader";
 import BoxesContainer from "./BoxesContainer.jsx";
 import HabitBoxesComponent from "./HabitBoxesComponent.jsx";
 // this is the destructuring from react router
 import { Switch, Route, Link } from "react-router-dom";
+
 
 
 // style importing - Eliot test
@@ -20,6 +21,7 @@ import HabitCalendar from "./CalendarComponent.jsx";
 import Form from "./FormComponent.jsx";
 
 
+
 // this is the destructuring from react router
 // import { useState, useEffect } from "react";
 
@@ -29,6 +31,7 @@ Declaring state in app component so that habit prop name can be passed
 down to child components in order to keep track of which habit was 
 chosen from the home page. 
 */
+
   constructor(props) {
     super(props);
     this.state = {
@@ -47,16 +50,17 @@ chosen from the home page.
         this.setState({url : loginUrl})
       });
   }
-
+  
   render() {
-
+    console.log(this.state.url)
+    let logInURLLINK;
     /// injecting URL from google's api for Login button at initial render
 
     if (window.location.href.length > 40){
       return (
         <Switch>
           <div>
-            <a href={this.state.url}>HABITUALS</a>
+            <h1>HABITUALS</h1>
             {/* NOTE:  needed to change path to Form component so we can pass habit-id as a prop in Form */}
             <Route exact strict path="/habit/:id/input" component={Form} />
             <Route exact strict path="/cal" component={HabitCalendar} />

@@ -82,10 +82,19 @@ app.get("/dist/bundle.js", (req, res) => {
   res.status(200).sendFile(path.join(__dirname, "../dist/bundle.js"));
 });
 
-// catch-all route handler for any requests to an unknown route
-app.use("/", (req, res, next) => {
-  res.sendStatus(404);
-});
+// route to render habit options on home page
+app.use('/habits', api);
+
+// route to post user input from form to db
+app.use('/user-input', api);
+
+// route to get habit information to render when a habit option is clicked
+app.use('/habit-info', api)
+
+//route to check for user in DB
+app.use('/user', api);
+
+
 
 // error handler
 app.use((err, req, res, next) => {
