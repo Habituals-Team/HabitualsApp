@@ -44,11 +44,17 @@ export default function UserForm() {
       <input type="number" placeholder="Habits List" name="habitsId" ref={register({maxLength: 80})} />
     </div>
     <div>
+      <input type="number" placeholder="repeat Every" name="repeatEvery" ref={register({maxLength: 80})} />
+    </div>
+    <div>
+      <input type="text" placeholder="repeat Frequency" name="repeatFrequency" ref={register({maxLength: 80})} />
+    </div>
+    <div>
       <input type="text" placeholder="Notes" name="memo" ref={register} />
     </div>
     <div></div>
-      <select name="repeatEvery" ref={register}>
-        <option value="1">1</option>
+      <select name="routineId" ref={register}>
+        <option value="1"> 1</option>
         <option value=" 2"> 2</option>
         <option value=" 3"> 3</option>
         <option value=" 4"> 4</option>
