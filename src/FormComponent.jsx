@@ -1,7 +1,9 @@
-import React, {useEffect} from 'react';
-import { useForm } from 'react-hook-form';
-import "regenerator-runtime/runtime";
 
+import React, {useEffect} from "react";
+import { Switch, Route, Link } from "react-router-dom";
+import { useForm } from "react-hook-form";
+import "regenerator-runtime/runtime";
+import Button from "@material-ui/core/Button";
 // useEffect(() => {
 //   fetch("/habits", {
 //     method: "GET"
@@ -15,7 +17,15 @@ import "regenerator-runtime/runtime";
 // }, []);
 
 
-export default function UserForm() {
+
+
+export default function UserForm(props) {
+  const {
+    match: {
+      params: {id}
+    }
+  } = props;
+
   const { register, handleSubmit, errors } = useForm();
   const handleOnSubmit = data => {
       console.log(data, "This is data coming from the form");
@@ -29,6 +39,7 @@ export default function UserForm() {
       .then((response) => response.json())
       .then((newData) => {
         console.log('Success:', newData);
+        // window.location.href = `http://localhost:8080/habit/${id}/input/cal`;
       })
       .catch((error) => {
         console.error('Error:', error);
@@ -68,7 +79,15 @@ export default function UserForm() {
       <input type="text" placeholder="How Often?" name="repeatFrequency" ref={register} />
       <input type="dateTime" placeholder="startDate" name="startDate" ref={register} />
       <input type="dateTime" placeholder="endDate" name="endDate" ref={register}/>
-      <input type="submit" />
+      {/* <input type="submit" /> */}
+      <Button
+        component={Link}
+        to={`/habit/${id}/input/cal`}
+        varient="contained"
+        userId={register.usersId}
+      >
+      Generate Calendar
+      </Button>
     </form>
   );
 }
