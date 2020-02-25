@@ -32,36 +32,46 @@ chosen from the home page.
   constructor(props) {
     super(props);
     this.state = {
-      habitName: []
+      habitName: [],
+      url: ''
     };
+  }
+
+  componentWillMount(){
+    fetch("/loginUrl", {
+      method: "GET"
+    })
+      .then(res => res.json())
+      .then(loginUrl => {
+        console.log(loginUrl);
+        this.setState({url : loginUrl})
+      });
   }
 
   render() {
 
     /// injecting URL from google's api for Login button at initial render
-        fetch("/loginUrl", {
-          method: "GET"
-        })
-          .then(res => res.json())
-          .then(loginUrl => {
-            console.log(loginUrl);
-          });
 
-          
-    return (
-      <Switch>
-        <div>
-          <h1>APP</h1>
-          {/* NOTE:  needed to change path to Form component so we can pass habit-id as a prop in Form */}
-          <Route exact strict path="/habit/:id/input" component={Form} />
-          <Route exact strict path="/cal" component={HabitCalendar} />
-          {/* NOTE:  needed to change path to HB component so we can pass use specific habit id*/}
-          <Route exact strict path="/habit/:id" component={HabitBoxesComponent} />
-          <Route exact strict path="/" component={BoxesContainer} />
-        </div>
-      </Switch>
-    );
-  }
+    if (window.location.href.length > 40){
+      return (
+        <Switch>
+          <div>
+            <a href={this.state.url}>HABITUALS</a>
+            {/* NOTE:  needed to change path to Form component so we can pass habit-id as a prop in Form */}
+            <Route exact strict path="/habit/:id/input" component={Form} />
+            <Route exact strict path="/cal" component={HabitCalendar} />
+            {/* NOTE:  needed to change path to HB component so we can pass use specific habit id*/}
+            <Route exact strict path="/habit/:id" component={HabitBoxesComponent} />
+            <Route exact strict path="/" component={BoxesContainer} />
+          </div>
+        </Switch>
+      );
+    }
+    else return (
+      <a id="login" href={this.state.url}>Log in with Google</a>
+    )
+    }
+    
 }
 // export default hot(module)(App);
 export default App;

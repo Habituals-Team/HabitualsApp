@@ -24,8 +24,8 @@ app.get("/", (req, res) => {
     // post redirect/callback -- already have code
     
     if (req.query.code){
-      console.log('inside query');
-      console.log(req.query.code);
+      // console.log('inside query');
+      // console.log(req.query.code);
       const code = req.query.code;
       const data = {
         client_id : '371087135-djckvfenrkntg92agsc5c7csq2d3cej1.apps.googleusercontent.com',
@@ -44,10 +44,29 @@ app.get("/", (req, res) => {
       .then((response) => response.json())
       .then((data) => {
         console.log('Success: ', data)
+        const access_token = data.access_token;
+        const refresh_token = data.refresh_token;
+
+        // make a get request to use API!!
+        fetch(`https://www.googleapis.com/drive/v2/files?access_token=${access_token}`)
+          .then((response) => {
+            return response.json();
+          })
+          .then((data) => {
+
+            console.log(data)
+          })
+          .catch((error) => {
+            res.send(error)
+          })
+          
+
+
       })
       .catch((error) => {
         res.send(error)
       })
+
     
 
 
