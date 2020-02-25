@@ -66,11 +66,11 @@ const BoxesContainer = () => {
 
   const boxes = habitsArray.map(habit => {
     return (
-      <div key={habit._id}>
+      // <div key={habit._id}>
         <Button
-          component={Link} to={`/habit/${habit._id}`} variant="contained">{habit.name}
+          component={Link} className="buttonComp" to={`/habit/${habit._id}`} variant="contained">{habit.name}
         </Button>
-      </div>
+      // </div>
     );
   });
 
