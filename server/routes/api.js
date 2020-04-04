@@ -12,8 +12,8 @@ router.get('/loginUrl', userControllers.getLoginUrl, (req, res) => {
 });
 
 // handler to get habits for home page
-router.get('/habits', habitControllers.getHabits, habitControllers.getImages, (req, res) => {
-  res.status(200).json({habits: res.locals.habits, images: res.locals.images});
+router.get('/habits', habitControllers.getHabits, (req, res) => {
+  res.status(200).json(res.locals.habits);
 });
 
 // handler to post user input into DB

@@ -27,7 +27,7 @@ habitControllers.getInfo = (req, res, next) => {
       if (err) return next(err);
       res.locals.habitInfo = results.rows;
       next();
-    })
+    });
 };
 
 
