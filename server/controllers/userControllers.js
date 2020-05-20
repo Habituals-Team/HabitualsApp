@@ -53,6 +53,8 @@ userControllers.getLoginUrl = (req, res, next) => {
 
 
 
+
+
   // first time the page loads
   console.log(urlGoogle())
   res.locals.loginUrl = urlGoogle();
