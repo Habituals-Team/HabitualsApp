@@ -21,26 +21,26 @@ app.use(cookieParser());
 
 // route to render html on home page, while providing the front-end the url for the login page
 app.get("/", (req, res) => {
-    // post redirect/callback -- already have code
-    
-    if (req.query.code){
-      // console.log('inside query');
-      // console.log(req.query.code);
-      const code = req.query.code;
-      const data = {
-        client_id : '371087135-djckvfenrkntg92agsc5c7csq2d3cej1.apps.googleusercontent.com',
-        client_secret : client_secret,
-        code : code,
-        grant_type : 'authorization_code',
-        redirect_uri : 'http://localhost:8080/',
-      }
-      fetch('https://oauth2.googleapis.com/token', {
-        method : 'POST',
-        headers: {
-          'Content-Type' : 'application/json',
-        },
-        body: JSON.stringify(data),
-      })
+  // post redirect/callback -- already have code
+
+  if (req.query.code) {
+    // console.log('inside query');
+    // console.log(req.query.code);
+    const code = req.query.code;
+    const data = {
+      client_id: '371087135-djckvfenrkntg92agsc5c7csq2d3cej1.apps.googleusercontent.com',
+      client_secret: client_secret,
+      code: code,
+      grant_type: 'authorization_code',
+      redirect_uri: 'http://localhost:8080/',
+    }
+    fetch('https://oauth2.googleapis.com/token', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(data),
+    })
       .then((response) => response.json())
       .then((data) => {
         console.log('Success: ', data)
@@ -59,7 +59,7 @@ app.get("/", (req, res) => {
           .catch((error) => {
             res.send(error)
           })
-          
+
 
 
       })
@@ -67,7 +67,7 @@ app.get("/", (req, res) => {
         res.send(error)
       })
 
-    
+
 
 
   }
@@ -94,7 +94,10 @@ app.use('/habit-info', api)
 //route to check for user in DB
 app.use('/user', api);
 
-
+// catch all route handler
+app.use('*', (req, res) => {
+  res.status(404).send('Page not found');
+})
 
 // error handler
 app.use((err, req, res, next) => {
