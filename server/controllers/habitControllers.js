@@ -3,7 +3,7 @@ const db = require('../models/models.js');
 const habitControllers = {};
 
 // middlewear to get habits from habits table
-habitControllers.getHabits = (req, res, next) => {
+habitControllers.getHabits = async (req, res, next) => {
   try {
     const text = 'SELECT * FROM habits';
     const result = await db.query(text);
@@ -27,7 +27,7 @@ habitControllers.getHabits = (req, res, next) => {
 // };
 
 // middlewear to get images from images table
-habitControllers.getImages = (req, res, next) => {
+habitControllers.getImages = async (req, res, next) => {
   try {
     const text = 'SELECT * FROM images';
     const result = await db.query(text);
@@ -50,7 +50,7 @@ habitControllers.getImages = (req, res, next) => {
 // }
 
 //middlewear to get info from habits table
-habitControllers.getInfo = (req, res, next) => {
+habitControllers.getInfo = async (req, res, next) => {
   const { id } = req.query;
   try {
     const text = `SELECT * FROM habits WHERE _id = $1`;
