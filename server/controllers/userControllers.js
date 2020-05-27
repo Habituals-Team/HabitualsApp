@@ -116,8 +116,7 @@ userControllers.updateRoutine = (req, res, next) => {
 // controller to post a user's form info to db
 userControllers.updateUserHabits = (req, res, next) => {
   // console.log('this is req.body', req.body);
-  const text = 'INSERT INTO user_habits (users_id, habits_id, memo, routine_id, start_date, end_date, created_date) 
-  VALUES()';
+  const text = 'INSERT INTO user_habits (users_id, habits_id, memo, routine_id, start_date, end_date, created_date) VALUES($1, $2, $3, $4, $5, $6)';
   const params = [req.body.usersId, req.body.habitsId, `${req.body.memo}`, req.body.routineId, `${req.body.startDate}`, `${req.body.endDate}`, NOW()];
   db.query(text, params,
     (err, results) => {
