@@ -70,19 +70,26 @@ userControllers.getGoogleId = (req, res, next) => {
 
 // controller to get user info from db
 userControllers.getUser = (req, res, next) => {
-  const text = 'SELECT username FROM users WHERE username=$1'
+  const text =
+    `SELECT username 
+    FROM users 
+    WHERE username=$1`;
   const params = oauthObj.id;   // MUST CHANGE ID PASSED INTO QUERY BASED ON GOOGLE OAUTH
-  db.query(text, params,
-    (err, results) => {
-      if (err) return next(err);
-      if (results === undefined) { // if not in db, go to post user
-        console.log('user does not exist, make new user');
-        return next();
-      }
-      res.locals.userInfo = results;
-      console.log('user exists!');
-      next();
-    })
+  try {
+    const data = await db.query(text, params);
+    if (!data) {
+      console.log('user does not exist, create new user');
+      return next();
+    }
+    res.locals.userInfo = data;
+    return next();
+  }
+  catch (err) {
+    return next({
+      log: `userControllers.getUser: ERROR: ${err}`,
+      message: { err: 'Error occurred in userControllers.getUser. Check server logs for more details.' }
+    });
+  }
 }
 
 //controller to post new user info to db
