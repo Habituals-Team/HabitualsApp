@@ -2,7 +2,7 @@ const db = require('../models/models.js');
 
 const habitControllers = {};
 
-// middlewear to get habits from habits table
+// middleware to get habits from habits table
 habitControllers.getHabits = async (req, res, next) => {
   try {
     const text = 'SELECT * FROM habits';
@@ -26,12 +26,12 @@ habitControllers.getHabits = async (req, res, next) => {
 //   })
 // };
 
-// middlewear to get images from images table
+// middleware to get images from images table
 habitControllers.getImages = async (req, res, next) => {
   try {
     const text = 'SELECT * FROM images';
     const result = await db.query(text);
-    res.locals.images = results.row;
+    res.locals.images = result.row;
     next();
   }
   catch (err) {
@@ -49,7 +49,7 @@ habitControllers.getImages = async (req, res, next) => {
 //   })
 // }
 
-//middlewear to get info from habits table
+//middleware to get info from habits table
 habitControllers.getInfo = async (req, res, next) => {
   const { id } = req.query;
   try {
