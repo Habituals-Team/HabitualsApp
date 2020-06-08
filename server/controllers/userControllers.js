@@ -68,7 +68,7 @@ userControllers.getGoogleId = (req, res, next) => {
 }
 /// OATH ENDS HERE
 
-// controller to get user info from db
+// middleware to get user info from db
 userControllers.getUser = (req, res, next) => {
   const text =
     `SELECT username 
@@ -92,21 +92,25 @@ userControllers.getUser = (req, res, next) => {
   }
 }
 
-//controller to post new user info to db
+// middleware to post new user info to db
 userControllers.postUser = (req, res, next) => {
-  const text = 'INSERT INTO users (username, password, first_name, last_name) VALUES ($1, $2, $3)';
-  const params = [oauthObj.username, oauthObj.firstName, oauthObj.lastName];
-  db.query(text, params,
-    (err, results) => {
-      if (err) return next(err);
-      res.locals.userInfo = results;
-      console.log('new user created!');
-      next();
-    }
-  )
+  try {
+    const text = 'INSERT INTO users (username, password, first_name, last_name) VALUES ($1, $2, $3)';
+    const params = [oauthObj.username, oauthObj.firstName, oauthObj.lastName];
+    const results = await db.query(text, params);
+    res.locals.userInfo = results;
+    console.log('new user created!');
+    return next();
+  }
+  catch (err) {
+    return next({
+      log: `userControllers.postUser: ERROR: ${err}`,
+      message: { err: 'Error occurred in userControllers.postUser. Check server logs for more details.' }
+    })
+  }
 }
 
-//controller to post new routine
+// middleware to post new routine
 userControllers.updateRoutine = (req, res, next) => {
   const text = 'INSERT INTO routine (users_id, repeat_every, repeat_frequency) VALUES ($1, $2, $3})';
   const params = [req.body.usersId, req.body.repeatEvery, `${req.body.repeatFrequency}`];
@@ -120,7 +124,7 @@ userControllers.updateRoutine = (req, res, next) => {
   )
 }
 
-// controller to post a user's form info to db
+// middleware to post a user's form info to db
 userControllers.updateUserHabits = (req, res, next) => {
   // console.log('this is req.body', req.body);
   const text = 'INSERT INTO user_habits (users_id, habits_id, memo, routine_id, start_date, end_date, created_date) VALUES($1, $2, $3, $4, $5, $6)';
