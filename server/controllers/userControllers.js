@@ -111,17 +111,21 @@ userControllers.postUser = (req, res, next) => {
 }
 
 // middleware to post new routine
-userControllers.updateRoutine = (req, res, next) => {
-  const text = 'INSERT INTO routine (users_id, repeat_every, repeat_frequency) VALUES ($1, $2, $3})';
-  const params = [req.body.usersId, req.body.repeatEvery, `${req.body.repeatFrequency}`];
-  db.query(text, params,
-    (err, results) => {
-      if (err) return next(err);
-      console.log('successful post!');
-      res.locals.routine = results.rows;
-      next();
-    }
-  )
+userControllers.updateRoutine = async (req, res, next) => {
+  try {
+    const text = 'INSERT INTO routine (users_id, repeat_every, repeat_frequency) VALUES ($1, $2, $3})';
+    const params = [req.body.usersId, req.body.repeatEvery, `${req.body.repeatFrequency}`];
+    const results = await db.query(text, params);
+    console.log('successful post!');
+    res.locals.routine = results.rows;
+    return next();
+  }
+  catch (err) {
+    return next({
+      log: `userControllers.updateRoutine: ERROR: ${err}`,
+      message: { err: 'Error occurred in userControllers.updateRoutine. Check server logs for more details.' }
+    })
+  }
 }
 
 // middleware to post a user's form info to db
