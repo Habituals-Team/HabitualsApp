@@ -131,15 +131,20 @@ userControllers.updateRoutine = async (req, res, next) => {
 // middleware to post a user's form info to db
 userControllers.updateUserHabits = (req, res, next) => {
   // console.log('this is req.body', req.body);
-  const text = 'INSERT INTO user_habits (users_id, habits_id, memo, routine_id, start_date, end_date, created_date) VALUES($1, $2, $3, $4, $5, $6)';
-  const params = [req.body.usersId, req.body.habitsId, `${req.body.memo}`, req.body.routineId, `${req.body.startDate}`, `${req.body.endDate}`, NOW()];
-  db.query(text, params,
-    (err, results) => {
-      // results return an empty array?
-      if (err) return next(err);
-      console.log('successful post!');
-      next();
-    });
+  try {
+    const text = 'INSERT INTO user_habits (users_id, habits_id, memo, routine_id, start_date, end_date, created_date) VALUES($1, $2, $3, $4, $5, $6)';
+    const params = [req.body.usersId, req.body.habitsId, `${req.body.memo}`, req.body.routineId, `${req.body.startDate}`, `${req.body.endDate}`, NOW()];
+    const results = db.query(text, params);
+    console.log('successful post!');
+    // should send some data back to front end -- fix later
+    return next();
+  }
+  catch (err) {
+    return next({
+      log: `userControllers.updateUserHabits: ERROR: ${err}`,
+      message: { err: 'Error occurred in userControllers.updateUserHabits. Check server logs for more details.' }
+    })
+  }
 };
 
 module.exports = userControllers;
